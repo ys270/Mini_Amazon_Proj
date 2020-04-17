@@ -82,8 +82,50 @@ def connectWorld(cmd):
     # s is socket_world
     return s
 
+# Connect to database
+# args: None
+# return: the connection
+def connect_db():
+    conn = psycopg2.connect(
+        database="hfojjoyn",
+        user="hfojjoyn",
+        password="lG-dnQMl1HRXFgTznfCEMrBc-U1RVPy9",
+        host="drona.db.elephantsql.com",
+        port="5432"
+    )
+    print("Backend connect to database success!")
+    return conn
+
+# Receive world id， and connect to UPS
+# args: None
+# return: socket_UPS, world_id
+def recv_worldid():
+    socket_UPS = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    socket_UPS.setsockopt(socket.SOL_SOCKET, socket.SO_KEEPALIVE, 1)
+    socket_UPS.connect((UPSHOST, UPSPORT))
+    initmsg = IG1_pb2.UMsg()
+    initmsg.ParseFromString(recv_msg(socket_UPS))
+    wid = initmsg.initworld.worldid
+    ack = initmsg.initworld.seq
+    ack_to_UPS(socket_UPS,ack)
+    return socket_UPS, wid
 
 
+# Ack to world
+# args: (socket, ack)
+# return: None
+def ack_to_world(s,ack):
+    ack_cmd = amazon_pb2.ACommands()
+    ack_cmd.acks.append(ack)
+    send_msg(s,ack_cmd)
+
+# Ack to UPS
+# args: (socket, ack)
+# return: None
+def ack_to_UPS(s,ack):
+    ack_msg = IG1_pb2.AMsg()
+    ack_msg.acks.append(ack)
+    send_msg(s,ack_msg)
 
 
 
@@ -92,18 +134,11 @@ def connectWorld(cmd):
 if __name__ == '__main__':
     global warehouse_num
     # Connect to database
-    conn = psycopg2.connect(
-        database = "hfojjoyn",
-        user = "hfojjoyn",
-        password = "lG-dnQMl1HRXFgTznfCEMrBc-U1RVPy9",
-        host = "drona.db.elephantsql.com",
-        port = "5432"
-    )
-    print("Backend connect to database success!")
+    conn = connect_db()
 
-    # Receive world ID
+    # Receive world ID and connect to UPS
     # TODO
-
+    socket_UPS, wid = recv_worldid()
 
     # Connect to the world (Warehouse)
     cmd = amazon_pb2.AConnect()
@@ -113,10 +148,9 @@ if __name__ == '__main__':
     with warehouse_lock:
         warehouse.id = warehouse_num
         warehouse_num += 1
-    warehouse.x = 3
-    warehouse.y = 4
+    warehouse.x = 8
+    warehouse.y = 8
     socket_world = connectWorld(cmd)
-
 
     # Connect to Web-server (as a server, Accept)
 
