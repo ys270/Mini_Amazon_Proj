@@ -2,6 +2,8 @@ import socket
 import threading
 import select
 import psycopg2
+from . import IG1_pb2
+from . import world_amazon_pb2
 
 from google.protobuf.internal.decoder import _DecodeVarint32
 from google.protobuf.internal.encoder import _EncodeVarint
@@ -72,7 +74,7 @@ def connectWorld(cmd):
     world_ip = socket.gethostbyname(WHOST)
     s.connect((world_ip,WPORT))
     send_msg(s,cmd)
-    connect_reply = amazon_pb2.AConnected()
+    connect_reply = world_amazon_pb2.AConnected()
     connect_reply.ParseFromString(recv_msg(s))
 
     print("world id: ")
@@ -115,7 +117,7 @@ def recv_worldid():
 # args: (socket, ack)
 # return: None
 def ack_to_world(s,ack):
-    ack_cmd = amazon_pb2.ACommands()
+    ack_cmd = world_amazon_pb2.ACommands()
     ack_cmd.acks.append(ack)
     send_msg(s,ack_cmd)
 
@@ -141,7 +143,7 @@ if __name__ == '__main__':
     socket_UPS, wid = recv_worldid()
 
     # Connect to the world (Warehouse)
-    cmd = amazon_pb2.AConnect()
+    cmd = world_amazon_pb2.AConnect()
     cmd.worldid = int(wid)  # wid from above, TODO
     cmd.isAmazon = True
     warehouse = cmd.initwh.add()
