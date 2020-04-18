@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='IG1.proto',
   package='IG1',
   syntax='proto2',
-  serialized_pb=_b('\n\tIG1.proto\x12\x03IG1\"f\n\x04\x41Msg\x12#\n\nasendtruck\x18\x01 \x03(\x0b\x32\x0f.IG1.ASendTruck\x12+\n\x0e\x61\x66inishloading\x18\x02 \x03(\x0b\x32\x13.IG1.AFinishLoading\x12\x0c\n\x04\x61\x63ks\x18\x03 \x03(\x03\"\xba\x01\n\x04UMsg\x12\'\n\x0cuorderplaced\x18\x01 \x03(\x0b\x32\x11.IG1.UOrderPlaced\x12)\n\rutruckarrived\x18\x02 \x03(\x0b\x32\x12.IG1.UTruckArrived\x12)\n\rupkgdelivered\x18\x03 \x03(\x0b\x32\x12.IG1.UPkgDelivered\x12%\n\tinitworld\x18\x04 \x01(\x0b\x32\x12.IG1.UInitialWorld\x12\x0c\n\x04\x61\x63ks\x18\x05 \x03(\x03\"-\n\rUInitialWorld\x12\x0f\n\x07worldid\x18\x01 \x02(\x03\x12\x0b\n\x03seq\x18\x02 \x02(\x03\"\x82\x01\n\nASendTruck\x12\"\n\x06whinfo\x18\x01 \x02(\x0b\x32\x12.IG1.WarehouseInfo\x12\t\n\x01x\x18\x02 \x02(\x05\x12\t\n\x01y\x18\x03 \x02(\x05\x12\r\n\x05pkgid\x18\x04 \x02(\x03\x12\x1e\n\x08products\x18\x05 \x03(\x0b\x32\x0c.IG1.Product\x12\x0b\n\x03seq\x18\x06 \x02(\x03\"3\n\rWarehouseInfo\x12\x0c\n\x04whid\x18\x01 \x02(\x05\x12\t\n\x01x\x18\x02 \x02(\x05\x12\t\n\x01y\x18\x03 \x02(\x05\"9\n\x07Product\x12\n\n\x02id\x18\x01 \x02(\x03\x12\x13\n\x0b\x64\x65scription\x18\x02 \x02(\t\x12\r\n\x05\x63ount\x18\x03 \x02(\x05\";\n\x0cUOrderPlaced\x12\r\n\x05pkgid\x18\x01 \x02(\x03\x12\x0f\n\x07truckid\x18\x02 \x02(\x05\x12\x0b\n\x03seq\x18\x03 \x02(\x03\"-\n\rUTruckArrived\x12\x0f\n\x07truckid\x18\x01 \x02(\x05\x12\x0b\n\x03seq\x18\x02 \x02(\x03\"=\n\x0e\x41\x46inishLoading\x12\r\n\x05pkgid\x18\x01 \x02(\x03\x12\x0f\n\x07truckid\x18\x02 \x02(\x05\x12\x0b\n\x03seq\x18\x03 \x02(\x03\"+\n\rUPkgDelivered\x12\r\n\x05pkgid\x18\x01 \x02(\x03\x12\x0b\n\x03seq\x18\x02 \x02(\x03')
+  serialized_pb=_b('\n\tIG1.proto\x12\x03IG1\"f\n\x04\x41Msg\x12#\n\nasendtruck\x18\x01 \x03(\x0b\x32\x0f.IG1.ASendTruck\x12+\n\x0e\x61\x66inishloading\x18\x02 \x03(\x0b\x32\x13.IG1.AFinishLoading\x12\x0c\n\x04\x61\x63ks\x18\x03 \x03(\x03\"\xba\x01\n\x04UMsg\x12\'\n\x0cuorderplaced\x18\x01 \x03(\x0b\x32\x11.IG1.UOrderPlaced\x12)\n\rutruckarrived\x18\x02 \x03(\x0b\x32\x12.IG1.UTruckArrived\x12)\n\rupkgdelivered\x18\x03 \x03(\x0b\x32\x12.IG1.UPkgDelivered\x12%\n\tinitworld\x18\x04 \x01(\x0b\x32\x12.IG1.UInitialWorld\x12\x0c\n\x04\x61\x63ks\x18\x05 \x03(\x03\"-\n\rUInitialWorld\x12\x0f\n\x07worldid\x18\x01 \x02(\x03\x12\x0b\n\x03seq\x18\x02 \x02(\x03\"\x91\x01\n\nASendTruck\x12\"\n\x06whinfo\x18\x01 \x02(\x0b\x32\x12.IG1.WarehouseInfo\x12\t\n\x01x\x18\x02 \x02(\x05\x12\t\n\x01y\x18\x03 \x02(\x05\x12\r\n\x05pkgid\x18\x04 \x02(\x03\x12\x1e\n\x08products\x18\x05 \x03(\x0b\x32\x0c.IG1.Product\x12\r\n\x05upsid\x18\x06 \x01(\t\x12\x0b\n\x03seq\x18\x07 \x02(\x03\"3\n\rWarehouseInfo\x12\x0c\n\x04whid\x18\x01 \x02(\x05\x12\t\n\x01x\x18\x02 \x02(\x05\x12\t\n\x01y\x18\x03 \x02(\x05\"9\n\x07Product\x12\n\n\x02id\x18\x01 \x02(\x03\x12\x13\n\x0b\x64\x65scription\x18\x02 \x02(\t\x12\r\n\x05\x63ount\x18\x03 \x02(\x05\";\n\x0cUOrderPlaced\x12\r\n\x05pkgid\x18\x01 \x02(\x03\x12\x0f\n\x07truckid\x18\x02 \x02(\x05\x12\x0b\n\x03seq\x18\x03 \x02(\x03\"-\n\rUTruckArrived\x12\x0f\n\x07truckid\x18\x01 \x02(\x05\x12\x0b\n\x03seq\x18\x02 \x02(\x03\"=\n\x0e\x41\x46inishLoading\x12\r\n\x05pkgid\x18\x01 \x02(\x03\x12\x0f\n\x07truckid\x18\x02 \x02(\x05\x12\x0b\n\x03seq\x18\x03 \x02(\x03\"+\n\rUPkgDelivered\x12\r\n\x05pkgid\x18\x01 \x02(\x03\x12\x0b\n\x03seq\x18\x02 \x02(\x03')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -211,8 +211,15 @@ _ASENDTRUCK = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='seq', full_name='IG1.ASendTruck.seq', index=5,
-      number=6, type=3, cpp_type=2, label=2,
+      name='upsid', full_name='IG1.ASendTruck.upsid', index=5,
+      number=6, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='seq', full_name='IG1.ASendTruck.seq', index=6,
+      number=7, type=3, cpp_type=2, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -230,7 +237,7 @@ _ASENDTRUCK = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=359,
-  serialized_end=489,
+  serialized_end=504,
 )
 
 
@@ -274,8 +281,8 @@ _WAREHOUSEINFO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=491,
-  serialized_end=542,
+  serialized_start=506,
+  serialized_end=557,
 )
 
 
@@ -319,8 +326,8 @@ _PRODUCT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=544,
-  serialized_end=601,
+  serialized_start=559,
+  serialized_end=616,
 )
 
 
@@ -364,8 +371,8 @@ _UORDERPLACED = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=603,
-  serialized_end=662,
+  serialized_start=618,
+  serialized_end=677,
 )
 
 
@@ -402,8 +409,8 @@ _UTRUCKARRIVED = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=664,
-  serialized_end=709,
+  serialized_start=679,
+  serialized_end=724,
 )
 
 
@@ -447,8 +454,8 @@ _AFINISHLOADING = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=711,
-  serialized_end=772,
+  serialized_start=726,
+  serialized_end=787,
 )
 
 
@@ -485,8 +492,8 @@ _UPKGDELIVERED = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=774,
-  serialized_end=817,
+  serialized_start=789,
+  serialized_end=832,
 )
 
 _AMSG.fields_by_name['asendtruck'].message_type = _ASENDTRUCK

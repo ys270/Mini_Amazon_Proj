@@ -8,6 +8,9 @@ def email_check(email):
     pattern = re.compile(r"\"?([-a-zA-Z0-9.`?{}]+@\w+\.\w+)\"?")
     return re.match(pattern, email)
 
+class SearchProductForm(forms.Form):
+    description = forms.CharField(label='Search by description', max_length=200)
+
 class RegistrationForm(forms.Form):
     username = forms.CharField(label='Username', max_length=50)
     email = forms.EmailField(label='Email')
@@ -24,7 +27,6 @@ class RegistrationForm(forms.Form):
             filter_result = User.objects.filter(username__exact=username)
             if len(filter_result) > 0:
                 raise forms.ValidationError("Username already exists.")
-
         return username
 
     def clean_email(self):

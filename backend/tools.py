@@ -8,40 +8,6 @@ from . import world_amazon_pb2
 from google.protobuf.internal.decoder import _DecodeVarint32
 from google.protobuf.internal.encoder import _EncodeVarint
 
-# IP and port for backend server
-HOST, PORT = socket.gethostbyname(socket.gethostname()), 33333
-
-# IP and port for world (warehouse)
-WHOST, WPORT = "vcm-14579.vm.duke.edu", 23456
-
-# IP and port for UPS
-# TODO
-UPSHOST, UPSPORT = "vcm-14579.vm.duke.edu", 22222
-
-# warehouse number
-warehouse_id = 1
-warehouse_lock = threading.Lock()
-
-# ship id
-ship_id = 1
-ship_id_lock = threading.Lock()
-
-# sequence number
-seqnum = 1
-seq_lock = threading.Lock()
-
-# A dict stores <seqnum, ACommand> for world
-commands_to_world = {}
-
-# TODO
-# Socket connecting to world (necessary?)
-socket_world = -1
-
-# APutOnTruck Waitlist
-APutOnTruck_WL = []
-
-# A dict stores <shipid, APutOnTruck> for UPS
-
 # send google protocol buffer message through socket
 # args: (socket, protocol buffer object)
 # return: None
@@ -128,48 +94,3 @@ def ack_to_UPS(s,ack):
     ack_msg = IG1_pb2.AMsg()
     ack_msg.acks.append(ack)
     send_msg(s,ack_msg)
-
-
-#handleUPS
-def handleUPS(socket_UPS, conn):
-    while True:
-        pass
-
-#handleWorld
-def handleWorld(socket_world, conn):
-    while True:
-        pass
-
-
-
-if __name__ == '__main__':
-    global warehouse_id
-    # Connect to database
-    conn = connect_db()
-
-    # Receive world ID and connect to UPS
-    # TODO
-    socket_UPS, wid = recv_worldid()
-    print('receive UPS socket, worldid = (%d)' %(wid))
-
-    # Connect to the world (Warehouse)
-    cmd = world_amazon_pb2.AConnect()
-    cmd.worldid = int(wid)  # wid from above, TODO
-    cmd.isAmazon = True
-    warehouse = cmd.initwh.add()
-    with warehouse_lock:
-        warehouse.id = warehouse_id
-        warehouse_id += 1
-    warehouse.x = 8
-    warehouse.y = 8
-    socket_world = connectWorld(cmd)
-    print('receive world socket, connect to world ^_^')
-
-
-
-    #handle the communication with world, UPS
-    threadworld = threading.Thread(target=handleWorld, args=(socket_world, conn))
-    threadUPS = threading.Thread(target=handleUPS, args=(socket_UPS, conn))
-    #start threads
-    threadworld.start()
-    threadUPS.start()

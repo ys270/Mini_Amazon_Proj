@@ -26,8 +26,9 @@ message ASendTruck{
     	required int32 x = 2;                                      	 
     	required int32 y = 3;                                      	 
     	required int64 pkgid = 4; // Package ID         	 
-    	repeated Product products = 5; // The products in a package    	 
-    	required int64 seq = 6; // Sequence number 	 
+    	repeated Product products = 5; // The products in a package
+    	optional string upsid = 6;
+    	required int64 seq = 7; // Sequence number
 }
 
 message WarehouseInfo{

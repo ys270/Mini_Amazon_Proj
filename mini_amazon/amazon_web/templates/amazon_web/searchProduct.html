@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Product</title>
+</head>
+<body>
+    <h2>Search Product by description</h2>
+    <form method="POST" action="{% url 'amazon_web:buyProduct' user.id %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in form %}
+            {{ field.errors }}
+            {{ field.label_tag }} {{ field }}
+            {% if field.help_text %}
+                {{ field.help_text|safe }}
+            {% endif %}
+        {% endfor %}
+        <input type="submit" value="Search" name="search">
+    </form>
+    <a href="{% url 'amazon_web:dashboard' user.id %}">Back to Main Page</a>
+</body>
+</html>

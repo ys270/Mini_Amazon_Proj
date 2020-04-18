@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Buy Product</title>
+</head>
+<body>
+    <h2>Buy Product</h2>
+    <h3>Here's your search result</h3>
+    <form method="POST" action="{% url 'amazon_web:buyProduct' user.id %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% if results|length > 0 %}
+            {% for result in results %}
+                <br>
+                <p>Item Name: {{result.name}}</p>
+                <p>Item Description: {{ result.description }}</p>
+                <br>
+            {% endfor %}
+        {% else %}
+            <h4>Sorry, currently there is no valid item that applies to your description.</h4>
+        {% endif %}
+            <li>Tell us what item you want:<input type="text" name="item_name" required="required"></li>
+            <li>Purchase Num:<input type="number" name="purchase_num" min="1" max="10" required="required"></li>
+            <li>Destination x coordinate:<input type="number" name="x" required="required"></li>
+            <li>Destination y coordinate:<input type="number" name="y" required="required"></li>
+            <li>UPS username(if any):<input type="text" name="upsid" ></li>
+            <input type="submit"  value="BUY" name="buy">
+    </form>
+</body>
+</html>

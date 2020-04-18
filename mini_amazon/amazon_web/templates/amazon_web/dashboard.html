@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Main Page</h1><br>
+    <h2>Account Info</h2><br>
+    <ul>
+        <li>Username: {{ user.username }}</li><br>
+        <li>Email: {{ user.email }}</li>
+    </ul>
+    <br>
+    <h3>You have these options:</h3><br>
+    <a href="{% url 'amazon_web:searchProduct' user.id %}">Search to buy product</a><br>
+    <form action="{% url 'amazon_web:logout' %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="Log Out" name="logout">
+    </form>
+    <br>
+</body>
+</html>

@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.models import User
-from .forms import RegistrationForm, LoginForm
+from .forms import RegistrationForm, LoginForm, SearchProductForm
 from .models import AmazonUser, Warehouse, Product, Order
 from django.urls import reverse
 from django.contrib import auth
@@ -12,7 +12,7 @@ import socket
 
 # Welcome page
 def index(request):
-    return render(request, 'amazon_web/index.html',{})
+    return render(request, 'amazon_web/index.html')
 
 # Login page
 def login(request):
@@ -34,6 +34,12 @@ def login(request):
 
     return render(request, 'amazon_web/login.html', {'form': form})
 
+
+@login_required
+def logout(request):
+    auth.logout(request)
+    return HttpResponseRedirect('/amazon/')
+
 # User register
 def register(request):
     if request.method == 'POST':
@@ -54,8 +60,60 @@ def register(request):
         form = RegistrationForm()
     return render(request, 'amazon_web/register.html', {'form': form})
 
-# TODO dashboard
+@login_required
 def dashboard(request,id):
-    s = "dashboard"
-    s += str(id)
-    return HttpResponse(s)
+    user = get_object_or_404(User,id=id)
+    amazonuser = get_object_or_404(AmazonUser,user=user)
+    return render(request,'amazon_web/dashboard.html',{'user':user,'amazonuser':amazonuser})
+
+
+@login_required
+def searchProduct(request, id):
+    user = get_object_or_404(User, id=id)
+    # if request.method == 'POST':
+        # form = SearchProductForm(request.POST)
+        # if form.is_valid():
+        #     part = form.cleaned_data['description']
+        #     part = str(part)
+        #     items = list(Product.objects.all())
+        #     results = []
+        #     for item in items:
+        #         curt = str(item.description)
+        #         if curt.find(part) != -1:
+        #             results.append(item)
+        #     # TODO: buyProduct.html
+        #     return HttpResponseRedirect(reverse('amazon_web:buyProduct',args=[user.id]))
+        #         #(request, 'amazon_web/buyProduct.html', {'user': user, 'results': results})
+
+    #else:
+    form = SearchProductForm()
+
+    return render(request, 'amazon_web/searchProduct.html', {'form': form, 'user': user})
+
+@login_required
+def buyProduct(request,id):
+    user = get_object_or_404(User, id=id)
+    amazonuser = get_object_or_404(AmazonUser, user=user)
+    if request.method == 'POST':
+        click_search = request.POST.get("search",None)
+        click_buy = request.POST.get("buy",None)
+        print(click_search)
+        print(click_buy)
+        if click_search is not None:
+            form = SearchProductForm(request.POST)
+            if form.is_valid():
+                part = form.cleaned_data['description']
+                part = str(part)
+                items = list(Product.objects.all())
+                results = []
+                for item in items:
+                    curt = str(item.description)
+                    if curt.find(part) != -1:
+                        results.append(item)
+                return render(request, 'amazon_web/buyProduct.html',{'results':results})
+        if click_buy is not None:
+            #TODO
+
+            return HttpResponse("You have successfully make an order.")
+    else:
+        return HttpResponseRedirect(reverse('amazon_web:dashboard', args=[user.id]))
