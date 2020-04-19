@@ -23,7 +23,7 @@ class Order(models.Model):
     pkgid = models.AutoField(primary_key=True)
     userid = models.IntegerField(default=0)
     upsid = models.CharField(null=True,blank=True,max_length=50)
-    status = models.IntegerField(default=0)
+    status = models.CharField(default="", max_length=20)
     x = models.IntegerField(default=0)
     y = models.IntegerField(default=0)
     date = models.DateTimeField(default=datetime.now,editable=False)

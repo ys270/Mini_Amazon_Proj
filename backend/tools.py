@@ -2,20 +2,21 @@ import socket
 import threading
 import select
 import psycopg2
-from . import IG1_pb2
-from . import world_amazon_pb2
+import IG1_pb2
+import world_amazon_pb2
 
 from google.protobuf.internal.decoder import _DecodeVarint32
 from google.protobuf.internal.encoder import _EncodeVarint
+
+UPSHOST, UPSPORT = "vcm-14579.vm.duke.edu",22222
+WHOST, WPORT = "vcm-14579.vm.duke.edu",23456
 
 # send google protocol buffer message through socket
 # args: (socket, protocol buffer object)
 # return: None
 def send_msg(socket,msg):
-    temp = []
     to_send = msg.SerializeToString()
-    _EncodeVarint(temp.append,len(to_send))
-    socket.sendall("".join(temp))
+    _EncodeVarint(socket.sendall,len(to_send))
     socket.sendall(to_send)
 
 # recv serialized message through socket
