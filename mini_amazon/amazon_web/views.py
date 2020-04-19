@@ -70,24 +70,7 @@ def dashboard(request,id):
 @login_required
 def searchProduct(request, id):
     user = get_object_or_404(User, id=id)
-    # if request.method == 'POST':
-        # form = SearchProductForm(request.POST)
-        # if form.is_valid():
-        #     part = form.cleaned_data['description']
-        #     part = str(part)
-        #     items = list(Product.objects.all())
-        #     results = []
-        #     for item in items:
-        #         curt = str(item.description)
-        #         if curt.find(part) != -1:
-        #             results.append(item)
-        #     # TODO: buyProduct.html
-        #     return HttpResponseRedirect(reverse('amazon_web:buyProduct',args=[user.id]))
-        #         #(request, 'amazon_web/buyProduct.html', {'user': user, 'results': results})
-
-    #else:
     form = SearchProductForm()
-
     return render(request, 'amazon_web/searchProduct.html', {'form': form, 'user': user})
 
 @login_required
