@@ -11,7 +11,6 @@
         {% csrf_token %}
         {% if results|length > 0 %}
             {% for result in results %}
-                <br>
                 <p>Item Name: {{result.name}}</p>
                 <p>Item Description: {{ result.description }}</p>
                 <br>
@@ -26,5 +25,6 @@
             <li>UPS username(if any):<input type="text" name="upsid" ></li>
             <input type="submit"  value="BUY" name="buy">
     </form>
+<a href="{% url 'amazon_web:dashboard' user.id %}">Back to Main Page</a>
 </body>
 </html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Query</title>
+</head>
+<body>
+{% if pck_list|length > 0 %}
+    <h1> Here's all your Orders.</h1>
+    <form method="POST" action="{% url 'amazon_web:query_one' user.id %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h3>Choose one to query:</h3>
+            {% for pck in pck_list %}
+                <br>
+                <input type="radio" name="pkgid" value="{{pck.pkgid}}" required="required"><br>
+                <p>Item Name: {{pck.item_name}}</p>
+                <p>Item Num: {{ pck.purchase_num}}</p>
+                <p>Order date: {{pck.date}}</p>
+                <br>
+            {% endfor %}
+        <input type="submit" value="QUERY">
+    </form>
+{% else %}
+    <h4>You have no packages at Amazon.</h4>
+{% endif %}
+    <a href="{% url 'amazon_web:dashboard' user.id %}">Back to Main Page</a>
+</body>
+</html>

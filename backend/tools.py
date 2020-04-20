@@ -8,8 +8,8 @@ import world_amazon_pb2
 from google.protobuf.internal.decoder import _DecodeVarint32
 from google.protobuf.internal.encoder import _EncodeVarint
 
-UPSHOST, UPSPORT = "vcm-14579.vm.duke.edu",22222
-WHOST, WPORT = "vcm-14579.vm.duke.edu",23456
+UPSHOST, UPSPORT = "vcm-14348.vm.duke.edu",33333
+WHOST, WPORT = "vcm-14348.vm.duke.edu",23456
 
 # send google protocol buffer message through socket
 # args: (socket, protocol buffer object)

@@ -22,11 +22,20 @@ class Product(models.Model):
 class Order(models.Model):
     pkgid = models.AutoField(primary_key=True)
     userid = models.IntegerField(default=0)
-    upsid = models.CharField(null=True,blank=True,max_length=50)
+    ups_username = models.CharField(null=True,blank=True,max_length=50)
     status = models.CharField(default="", max_length=20)
     x = models.IntegerField(default=0)
     y = models.IntegerField(default=0)
     date = models.DateTimeField(default=datetime.now,editable=False)
-    item_description = models.CharField(max_length=100,default="")
+    item_name = models.CharField(max_length=100,default="")
     purchase_num = models.IntegerField(default=1)
 
+class ACommandsToWorld(models.Model):
+    seq = models.IntegerField(primary_key=True,unique=True)
+    acommand_type = models.CharField(max_length=30)
+    acommand = models.TextField()
+
+class AMsgToUPS(models.Model):
+    seq = models.IntegerField(primary_key=True,unique=True)
+    amsg_type = models.CharField(max_length=30)
+    amsg = models.TextField()

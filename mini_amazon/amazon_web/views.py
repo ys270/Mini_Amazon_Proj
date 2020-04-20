@@ -80,8 +80,6 @@ def buyProduct(request,id):
     if request.method == 'POST':
         click_search = request.POST.get("search",None)
         click_buy = request.POST.get("buy",None)
-        print(click_search)
-        print(click_buy)
         if click_search is not None:
             form = SearchProductForm(request.POST)
             if form.is_valid():
@@ -93,10 +91,56 @@ def buyProduct(request,id):
                     curt = str(item.description)
                     if curt.find(part) != -1:
                         results.append(item)
-                return render(request, 'amazon_web/buyProduct.html',{'results':results})
+                return render(request, 'amazon_web/buyProduct.html',{'results':results,'user': user})
         if click_buy is not None:
             #TODO
+            #get data from the form
+            item_name = request.POST.get("item_name")
+            purchase_num = request.POST.get("purchase_num")
+            x = request.POST.get("x")
+            y = request.POST.get("y")
+            upsid = request.POST.get("upsid")
+            product_list = Product.objects.all()
+            find = False
+            for product in product_list:
+                if product.name == item_name:
+                    if product.count >= purchase_num:
+                        find = True
+                        neworder = Order(userid=id, ups_username=upsid, status="enough", x=x, y=y, item_name=item_name,
+                                         purchase_num=purchase_num)
+                        neworder.save()
+                    else:
+                        neworder = Order(userid=id, ups_username=upsid, status="lack", x=x, y=y, item_name=item_name,
+                                         purchase_num=purchase_num)
+                        neworder.save()
+            #new product type need to be added
+            if find == False:
+                newproduct = Product(name=item_name, description=item_name)
+                newproduct.save()
+                neworder = Order(userid=id, ups_username=upsid, status="lack", x=x, y=y, item_name=item_name,
+                                 purchase_num=purchase_num)
+                neworder.save()
+            return render(request,'amazon_web/successful_buy.html',{'user': user})
+    else:
+        return HttpResponseRedirect(reverse('amazon_web:dashboard', args=[user.id]))
 
-            return HttpResponse("You have successfully make an order.")
+
+@login_required
+def query(request, id):
+    user = get_object_or_404(User, id=id)
+    amazonuser = get_object_or_404(AmazonUser, user=user)
+    packages = Order.objects.filter(userid=id)
+    packages = list(packages)
+    return render(request,'amazon_web/query.html',{'pck_list':packages,'user': user})
+
+def query_one(request, id):
+    user = get_object_or_404(User, id=id)
+    amazonuser = get_object_or_404(AmazonUser, user=user)
+    if request.method == 'POST':
+        pkgid = request.POST.get("pkgid")
+        print(pkgid)
+        order = Order.objects.filter(pkgid=pkgid)
+        order = order[0]
+        return render(request,'amazon_web/query_one.html',{'order':order,'user': user})
     else:
         return HttpResponseRedirect(reverse('amazon_web:dashboard', args=[user.id]))

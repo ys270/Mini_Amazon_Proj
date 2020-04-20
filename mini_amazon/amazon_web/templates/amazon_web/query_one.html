@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>query_one</title>
+</head>
+<body>
+<h1>Details of this package</h1>
+<p>Package Status: {{order.status}}</p>
+<p>Destination's x Coordinate: {{order.x}}</p>
+<p>Destination's y Coordinate: {{order.y}}</p>
+<p>Item Name: {{order.item_name}}</p>
+<p>Purchase Num: {{order.purchase_num}}</p>
+<p>Order creation date: {{order.date}}</p>
+<a href="{% url 'amazon_web:dashboard' user.id %}">Back to Main Page</a>
+</body>
+</html>

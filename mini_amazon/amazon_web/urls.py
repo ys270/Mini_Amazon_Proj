@@ -9,5 +9,7 @@ urlpatterns = [
     path('dashboard/<int:id>/',views.dashboard, name='dashboard'),
     path('buyProduct/<int:id>/',views.buyProduct,name='buyProduct'),
     path('searchProduct/<int:id>/',views.searchProduct,name='searchProduct'),
+    path('query/<int:id>/',views.query,name='query'),
+    path('query_one/<int:id>/',views.query_one,name='query_one'),
     path('logout/', views.logout, name='logout'),
 ]
