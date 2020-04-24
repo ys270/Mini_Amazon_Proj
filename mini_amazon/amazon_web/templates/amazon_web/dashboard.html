@@ -4,15 +4,35 @@
     <meta charset="UTF-8">
     <title>Dashboard</title>
 </head>
-<audio src="https://sharefs.yun.kugou.com/202004241139/df31ab7477c0523281341aec912dbaa8/G203/M08/07/01/a4cBAF5sgPiAGj-JAEKYCpbtmZk110.mp3" autoplay="autoplay"></audio>
+<script language="JavaScript" type="text/javascript">
+    function play() {
+        var myAuto = document.getElementById('myaudio');
+        myAuto.play();
+    }
+    function closePlay() {
+        var myAuto = document.getElementById('myaudio');
+        myAuto.pause();
+        myAuto.load();
+    }
+    function pause() {
+        var myAuto = document.getElementById('myaudio');
+        myAuto.pause();
+    }
+</script>
 <body>
-    <h1>Main Page</h1><br>
-    <h2>Account Info</h2><br>
+<audio src="https://sharefs.yun.kugou.com/202004241139/df31ab7477c0523281341aec912dbaa8/G203/M08/07/01/a4cBAF5sgPiAGj-JAEKYCpbtmZk110.mp3" id="myaudio" controls="controls" loop="true" hidden="true"></audio>
+    <h1>Main Page</h1>
+    <h2>Account Info</h2>
     <ul>
-        <li>Username: {{ user.username }}</li><br>
+        <li>Username: {{ user.username }}</li>
         <li>Email: {{ user.email }}</li>
     </ul>
     <br>
+    *******Music Control*******<br>
+    <input type="button" onclick="play()" value="Play bgm" />
+    <input type="button" onclick="pause()" value="Pause bgm" />
+    <input type="button" onclick="closePlay()" value="Close bgm" /><br>
+    *******Music Control*******
     <h3>What do you want to do?:</h3><br>
     <a href="{% url 'amazon_web:searchProduct' user.id %}">Search to buy product</a><br>
     <a href="{% url 'amazon_web:query' user.id %}">Query my packages</a><br>
