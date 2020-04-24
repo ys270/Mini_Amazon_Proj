@@ -11,7 +11,6 @@
         {% csrf_token %}
         <h3>Choose one to query:</h3>
             {% for pck in pck_list %}
-                <br>
                 <input type="radio" name="pkgid" value="{{pck.pkgid}}" required="required"><br>
                 <p>Item Name: {{pck.item_name}}</p>
                 <p>Item Num: {{ pck.purchase_num}}</p>

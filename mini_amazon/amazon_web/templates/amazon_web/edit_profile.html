@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Change email info</title>
+</head>
+<body>
+    <h2>Change email info</h2>
+    <form method="POST" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        Change my email to: <input type="email" required="required" name="user_email">
+        <input type="submit" value="Confirm The Change">
+    </form>
+</body>
+</html>

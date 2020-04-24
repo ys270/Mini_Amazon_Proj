@@ -11,5 +11,7 @@ urlpatterns = [
     path('searchProduct/<int:id>/',views.searchProduct,name='searchProduct'),
     path('query/<int:id>/',views.query,name='query'),
     path('query_one/<int:id>/',views.query_one,name='query_one'),
+    path('rate/<int:id>/',views.rate,name='rate'),
+    path('edit_profile/<int:id>/',views.edit_profile,name='edit_profile'),
     path('logout/', views.logout, name='logout'),
 ]

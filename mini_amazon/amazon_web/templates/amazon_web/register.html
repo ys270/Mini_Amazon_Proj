@@ -9,10 +9,10 @@
     <form method="POST" action="" enctype="multipart/form-data">
         {% csrf_token %}
         {% for field in form %}
-            {{ field.errors }}
-            {{ field.label_tag }} {{ field }}
+            {{ field.errors }}<br>
+            {{ field.label_tag }} {{ field }}<br>
             {% if field.help_text %}
-                {{ field.help_text|safe }}
+                {{ field.help_text|safe }}<br>
             {% endif %}
         {% endfor %}
         <input type="submit" value="Register!">

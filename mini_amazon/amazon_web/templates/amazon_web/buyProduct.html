@@ -13,6 +13,7 @@
             {% for result in results %}
                 <p>Item Name: {{result.name}}</p>
                 <p>Item Description: {{ result.description }}</p>
+                <p>Item Rate: {{ result.avg_score }}</p>
                 <br>
             {% endfor %}
         {% else %}

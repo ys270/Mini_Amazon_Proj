@@ -77,10 +77,10 @@ WSGI_APPLICATION = 'mini_amazon.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'hfojjoyn',
-        'USER': 'hfojjoyn',
+        'NAME': 'oryhumzm',
+        'USER': 'oryhumzm',
         'HOST': 'drona.db.elephantsql.com',
-        'PASSWORD': 'lG-dnQMl1HRXFgTznfCEMrBc-U1RVPy9',
+        'PASSWORD': '1cv9iF1fSqRoes-F9NHEUe2FnbSdWJY2',
         'PORT': '5432'
     }
 }

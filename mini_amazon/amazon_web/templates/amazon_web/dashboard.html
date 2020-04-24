@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Dashboard</title>
 </head>
+<audio src="https://sharefs.yun.kugou.com/202004241139/df31ab7477c0523281341aec912dbaa8/G203/M08/07/01/a4cBAF5sgPiAGj-JAEKYCpbtmZk110.mp3" autoplay="autoplay"></audio>
 <body>
     <h1>Main Page</h1><br>
     <h2>Account Info</h2><br>
@@ -15,6 +16,8 @@
     <h3>What do you want to do?:</h3><br>
     <a href="{% url 'amazon_web:searchProduct' user.id %}">Search to buy product</a><br>
     <a href="{% url 'amazon_web:query' user.id %}">Query my packages</a><br>
+    <a href="{% url 'amazon_web:rate' user.id %}">Rate my completed orders</a><br>
+    <a href="{% url 'amazon_web:edit_profile' user.id %}">Edit my profile</a><br>
     <form action="{% url 'amazon_web:logout' %}" method="POST">
         {% csrf_token %}
         <input type="submit" value="Log Out" name="logout">

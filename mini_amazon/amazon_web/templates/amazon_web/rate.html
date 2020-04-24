@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rate your orders</title>
+</head>
+<body>
+    {% if orders|length > 0 %}
+    <h2>Here are your completed orders</h2>
+    <h2>Choose one to rate</h2>
+    <form method="POST" action="{% url 'amazon_web:rate' user.id %}" enctype="multipart/form-data">
+        {% csrf_token %}
+            {% for order in orders %}
+                <input type="radio" name="pkgid" value="{{order.pkgid}}" required="required"><br>
+                <p>Item Name: {{order.item_name}}</p>
+                <p>Item Num: {{order.purchase_num}}</p>
+                <p>Order date: {{order.date}}</p>
+                <br>
+            {% endfor %}
+        Input your rate(1 to 5):<input type="number" required="required" max="5" min="1" name="score">
+        <input type="submit" value="Confirm your rate" name="click_rate">
+    </form>
+    {% else %}
+    <h2>You have no completed orders at Amazon. Or you have rated all your orders.</h2>
+    {% endif %}
+<br><a href="{% url 'amazon_web:dashboard' user.id %}">Back to Main Page</a>
+
+</body>
+</html>

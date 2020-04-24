@@ -12,6 +12,9 @@
 <p>Item Name: {{order.item_name}}</p>
 <p>Purchase Num: {{order.purchase_num}}</p>
 <p>Order creation date: {{order.date}}</p>
+{% if order.rate_score %}
+<p>Your rate for this order: {{order.rate_score}}</p>
+{% endif %}
 <a href="{% url 'amazon_web:dashboard' user.id %}">Back to Main Page</a>
 </body>
 </html>

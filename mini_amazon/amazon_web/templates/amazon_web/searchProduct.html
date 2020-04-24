@@ -14,9 +14,17 @@
             {% if field.help_text %}
                 {{ field.help_text|safe }}
             {% endif %}
-        {% endfor %}
+        {% endfor %}<br>
         <input type="submit" value="Search" name="search">
-    </form>
+    </form><br>
+    {% if products|length > 0 %}
+        {% for product in products %}
+            <li>Item Name: {{ product.name }}</li><br>
+        {% endfor %}
+    {% else %}
+        <p>There is no products in stock right now.</p><br>
+        <p>Please search a product you want, the warehouse will purchase it for you.</p><br>
+    {% endif %}
     <a href="{% url 'amazon_web:dashboard' user.id %}">Back to Main Page</a>
 </body>
 </html>
