@@ -18,13 +18,15 @@
         <input type="submit" value="Search" name="search">
     </form><br>
     {% if products|length > 0 %}
+    <li>Categories:</li><br>
         {% for product in products %}
-            <li>Item Name: {{ product.name }}</li><br>
+            Item Name: {{ product.name }}<br>
         {% endfor %}
     {% else %}
         <p>There is no products in stock right now.</p><br>
         <p>Please search a product you want, the warehouse will purchase it for you.</p><br>
     {% endif %}
+    <br>
     <a href="{% url 'amazon_web:dashboard' user.id %}">Back to Main Page</a>
 </body>
 </html>

@@ -1,0 +1,16 @@
+ERSS Project -- Mini Amazon 
+Kefan Lin(kl352), Yue Shao(ys270)
+
+Danger Log
+
+1. The email sender address and password are stored in the backendServer.py code in plain text, which might be stolen by malicious adversary. 
+
+2. When the user buy product, if the product does not exist, our server will create a new item corresponding to the user's input. The user can types in some malicious code that might be detrimental to the server.
+
+3. The sequence number starts from 1 and increments by 1 each time. If some malicious user creates some kind of script to place order very quickly, the sequence number might exceed the maximum positive integer. Then, there will be a overflow (i.e. the sequence number will be a huge positive number, then be a huge negative number).
+
+4. For a specific user, his/her account might be logged in from more than 1 browsers, whici is not safe. We don't know how to solve this problem in Django with our current knowledge.
+
+5. In the backendServer.py code, when we iterate through a global dictionary, its length may change since other threads might add or delete an element of the same dictionary. 
+
+Solution: We found that the dictionary is not thread-safe in python. So every time before we iterate through the dictionary, we acquire a mutex. After the iteration, we unlock it.

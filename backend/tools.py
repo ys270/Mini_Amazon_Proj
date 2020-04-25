@@ -25,8 +25,8 @@ toUPS = {}
 toUPS_lock = threading.Lock()
 
 #for connection with UPS and World
-UPSHOST, UPSPORT = "vcm-14348.vm.duke.edu",33333
-WHOST, WPORT = "vcm-14615.vm.duke.edu",23456
+UPSHOST, UPSPORT = "vcm-14579.vm.duke.edu",33333
+WHOST, WPORT = "vcm-14579.vm.duke.edu",23456
 
 #################################global variables#####################################################
 

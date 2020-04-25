@@ -1,0 +1,46 @@
+ERSS Project -- Mini Amazon 
+Kefan Lin(kl352), Yue Shao(ys270)
+
+Differentiation
+
+1. Background music
+
+ We provide background music in user's dashboard. The user can "play" , "pause" or "stop" the background music.
+
+
+2. Email notification when package delivered
+
+When the package is delivered, our server will automatically send an email notifying that the package has been delivered to the corresponding user.
+
+
+3. User profile modification
+
+The user can modify his/her personal profile in the dashboard.(In our server, just user email).
+
+
+4. Order rating
+
+The user can choose any completed order and rate it. The rate score is in range from 1 to 5.
+
+
+5. Item average rate score
+
+When buying items, the user can see the average rate score of each item. If there is no people rating this item, the default average rate score is 5.
+
+
+6. Show Order details
+
+For each user, We provide a order list which contains all orders that belongs to this user. The user can choose any order and check the order details.
+
+
+7. Show account info
+
+For a loggen-in user, his/her account information will be displayed in the dashboard.
+
+
+8. Approximate item searching
+
+When the user searchs for an item, the results will contains all possible items. For example, let's say there are "apple" and "pineapple" in stock. If the user searchs for "app", the search results will contain both "apple" and "pineapple". 
+
+
+
