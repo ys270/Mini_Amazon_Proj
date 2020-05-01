@@ -10,7 +10,7 @@ and push things forward.
 ```
 python3 manage.py runserver 0:8000
 ```
-Then, go to vcm-xxxxx.vm.duke.edu:8000/amazon
+Then, go to webpage:vcm-xxxxx.vm.duke.edu:8000/amazon
 ### Run backend
 ```
 python3 backend.py
