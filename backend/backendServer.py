@@ -53,7 +53,7 @@ def recvFromUPS_th(socket_UPS,conn):
     sender = 'kflin1996@gmail.com'
     smtpObj = smtplib.SMTP('smtp.gmail.com', 587)
     smtpObj.starttls()
-    smtpObj.login(sender, r'fdsa961224')
+    smtpObj.login(sender, r'xxxxxxxx')
     while True:
         # recv the UMsg
         ups_response = IG1_pb2.UMsg()
